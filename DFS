@@ -1,0 +1,15 @@
+dict = {1:[6,4],2:[],3:[5,1],4:[],5:[7],6:[2],7:[]}
+def dfs(d,n):
+    travelled =[]
+    stack =[]
+    travelled.append(n)
+    stack.append(n)
+    while stack:
+        i=stack.pop()
+        for j in d[i]:
+            if j not in travelled:
+                dfs(d,j)
+    
+    print(travelled)
+
+dfs(dict,3)
