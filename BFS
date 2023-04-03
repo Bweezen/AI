@@ -1,0 +1,16 @@
+dict = {1:[6,4],2:[],3:[5,1],4:[],5:[7],6:[2],7:[]}
+def bfs(d,n):
+    travelled =[]
+    queue =[]
+    travelled.append(n)
+    queue.append(n)
+    while queue:
+        i=queue.pop(0)
+        for j in d[i]:
+            if j not in travelled:
+                travelled .append(j)
+                queue.append(j)
+    
+    print(travelled)
+
+bfs(dict,3)
