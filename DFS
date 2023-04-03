@@ -6,10 +6,10 @@ def dfs(d,n):
     stack.append(n)
     while stack:
         i=stack.pop()
+        print(i)
         for j in d[i]:
             if j not in travelled:
                 dfs(d,j)
-    
-    print(travelled)
+
 
 dfs(dict,3)
