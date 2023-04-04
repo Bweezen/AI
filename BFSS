@@ -1,0 +1,32 @@
+from queue import PriorityQueue
+
+def idbfs(start, is_goal, heuristic, successors):
+    for depth in range(1000000):
+        result = best_first_search(start, is_goal, heuristic, successors, depth)
+        if result is not None:
+            return result
+
+def best_first_search(start, is_goal, heuristic, successors, max_depth=None):
+    frontier = PriorityQueue()
+    frontier.put((0, start))
+    came_from = {start: None}
+    cost_so_far = {start: 0}
+
+    while not frontier.empty():
+        _, current = frontier.get()
+
+        if is_goal(current):
+            return current
+
+        if max_depth is not None and cost_so_far[current] >= max_depth:
+            continue
+
+        for next_node, cost in successors(current):
+            new_cost = cost_so_far[current] + cost
+            if next_node not in cost_so_far or new_cost < cost_so_far[next_node]:
+                cost_so_far[next_node] = new_cost
+                priority = new_cost + heuristic(next_node)
+                frontier.put((priority, next_node))
+                came_from[next_node] = current
+
+    return None
