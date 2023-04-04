@@ -62,4 +62,3 @@ else :
 	print ("Target is NOT reachable from source " +
 		"within max depth")
 
-# This code is contributed by Neelam Pandey
